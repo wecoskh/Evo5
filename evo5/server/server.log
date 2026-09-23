@@ -1,0 +1,65 @@
+npm notice run evo5-server@1.0.0 dev
+npm notice run node src/index.js
+[db] started in-memory MongoDB (dev only)
+[seed] populating demo data…
+[seed] done — 23 users, 4 campaigns
+[api] EvO5 API listening on 127.0.0.1:4000 (development)
+[0mGET /api/health [32m200[0m 2.330 ms - 86[0m
+[0mGET / [32m200[0m 1.881 ms - 472[0m
+[0mGET /favicon.ico [33m404[0m 0.933 ms - 37[0m
+[0mGET /api/stats/public [32m200[0m 12.610 ms - 173[0m
+[0mGET /api/stats/public [36m304[0m 4.794 ms - -[0m
+[0mGET /api/stats/public [36m304[0m 31.113 ms - -[0m
+[0mGET /api/stats/public [36m304[0m 5.186 ms - -[0m
+[0mPOST /api/auth/login [32m200[0m 105.751 ms - 591[0m
+[0mGET /api/stats/admin [32m200[0m 7.862 ms - 177[0m
+[0mGET /api/stats/public [36m304[0m 6.314 ms - -[0m
+[0mGET /api/stats/public [36m304[0m 2.815 ms - -[0m
+[0mGET /api/stats/admin [36m304[0m 5.107 ms - -[0m
+[0mPOST /api/auth/login [32m200[0m 105.152 ms - 626[0m
+[0mGET /api/campaigns [32m200[0m 5.502 ms - 784[0m
+[0mGET /api/campaigns [36m304[0m 1.574 ms - -[0m
+[0mGET /api/escrow [32m200[0m 17.952 ms - -[0m
+[0mGET /api/escrow [36m304[0m 5.567 ms - -[0m
+[0mPOST /api/auth/login [32m200[0m 104.991 ms - 659[0m
+[0mGET /api/proposals/inbox [32m200[0m 3.420 ms - 572[0m
+[0mGET /api/proposals/inbox [36m304[0m 1.777 ms - -[0m
+[0mGET /api/escrow [36m304[0m 9.777 ms - -[0m
+[0mGET /api/escrow [36m304[0m 7.283 ms - -[0m
+[0mPOST /api/auth/login [32m200[0m 103.812 ms - 652[0m
+[0mGET /api/proposals/inbox [32m200[0m 2.230 ms - 16[0m
+[0mGET /api/proposals/inbox [36m304[0m 1.303 ms - -[0m
+[0mGET /api/escrow [32m200[0m 5.700 ms - 14[0m
+[0mGET /api/escrow [36m304[0m 5.121 ms - -[0m
+[0mGET /api/proposals/inbox [36m304[0m 6.114 ms - -[0m
+[0mGET /api/proposals/inbox [36m304[0m 5.362 ms - -[0m
+[0mPOST /api/auth/login [32m200[0m 105.564 ms - 591[0m
+[0mGET /api/stats/public [36m304[0m 2.940 ms - -[0m
+[0mGET /api/stats/admin [36m304[0m 4.457 ms - -[0m
+[0mGET /api/stats/public [36m304[0m 3.141 ms - -[0m
+[0mGET /api/stats/admin [36m304[0m 2.659 ms - -[0m
+[0mGET /api/stats/public [36m304[0m 9.730 ms - -[0m
+[0mGET /api/stats/public [36m304[0m 6.745 ms - -[0m
+[0mGET /api/auth/me [32m200[0m 32.140 ms - 388[0m
+[0mGET /api/auth/me [36m304[0m 2.248 ms - -[0m
+[0mGET /api/stats/public [36m304[0m 28.658 ms - -[0m
+[0mGET /api/stats/public [36m304[0m 3.957 ms - -[0m
+[0mGET /api/auth/me [36m304[0m 2.837 ms - -[0m
+[0mGET /api/stats/public [36m304[0m 5.072 ms - -[0m
+[0mGET /api/auth/me [36m304[0m 2.249 ms - -[0m
+[0mGET /api/stats/public [36m304[0m 3.170 ms - -[0m
+[0mGET /api/stats/public [36m304[0m 4.444 ms - -[0m
+[0mGET /api/auth/me [36m304[0m 1.997 ms - -[0m
+[0mGET /api/stats/public [36m304[0m 2.357 ms - -[0m
+[0mGET /api/auth/me [36m304[0m 1.366 ms - -[0m
+[0mGET /api/auth/me [36m304[0m 38.409 ms - -[0m
+[0mGET /api/auth/me [36m304[0m 0.898 ms - -[0m
+[0mGET /api/stats/public [36m304[0m 50.812 ms - -[0m
+[0mGET /api/stats/public [36m304[0m 2.409 ms - -[0m
+[0mGET /api/auth/me [36m304[0m 66.371 ms - -[0m
+[0mGET /api/auth/me [36m304[0m 1.941 ms - -[0m
+[0mGET /api/stats/public [36m304[0m 35.754 ms - -[0m
+[0mGET /api/stats/public [36m304[0m 5.585 ms - -[0m
+[api] SIGTERM received, shutting down gracefully...
+[api] SIGTERM received, shutting down gracefully...
+[api] Database connection closed

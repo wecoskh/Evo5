@@ -1,0 +1,15 @@
+npm notice run evo5-client@1.0.0 dev
+npm notice run vite
+
+  VITE v5.4.21  ready in 93 ms
+
+  ➜  Local:   http://localhost:5173/
+  ➜  Network: http://10.77.171.87:5173/
+6:13:10 pm [vite] hmr update /src/styles.css
+6:35:46 pm [vite] hmr update /src/sections/Landing.jsx
+6:36:43 pm [vite] hmr update /src/sections/Landing.jsx
+6:37:29 pm [vite] hmr update /src/styles.css
+7:30:30 pm [vite] hmr update /src/styles.css
+7:46:41 pm [vite] hmr update /src/sections/Landing.jsx
+7:46:58 pm [vite] hmr update /src/sections/Landing.jsx
+7:47:04 pm [vite] hmr update /src/sections/Landing.jsx

@@ -1,0 +1,64 @@
+version: '3.8'
+
+services:
+  mongodb:
+    image: mongo:7
+    container_name: evo5-mongodb
+    restart: unless-stopped
+    environment:
+      MONGO_INITDB_DATABASE: evo5
+    volumes:
+      - mongodb_data:/data/db
+    networks:
+      - evo5-network
+    healthcheck:
+      test: echo 'db.runCommand("ping").ok' | mongosh localhost:27017/evo5 --quiet
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  api:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    container_name: evo5-api
+    restart: unless-stopped
+    environment:
+      NODE_ENV: production
+      PORT: 4000
+      API_HOST: 0.0.0.0
+      MONGO_URI: mongodb://mongodb:27017/evo5
+      JWT_SECRET: ${JWT_SECRET}
+      FRONTEND_URL: ${FRONTEND_URL}
+    ports:
+      - "4000:4000"
+    depends_on:
+      mongodb:
+        condition: service_healthy
+    networks:
+      - evo5-network
+    healthcheck:
+      test: ["CMD", "wget", "-q", "--spider", "http://localhost:4000/api/ready"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  web:
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    container_name: evo5-web
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    depends_on:
+      - api
+    networks:
+      - evo5-network
+
+networks:
+  evo5-network:
+    driver: bridge
+
+volumes:
+  mongodb_data:

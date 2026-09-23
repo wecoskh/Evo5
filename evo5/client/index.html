@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EvO5 — Where Influence Meets Intelligence</title>
+    <meta name="description" content="EvO5 is the world's first AI-mediated, zero-contact 5-in-1 marketplace connecting brands with influencers, celebrities, volunteers and surveyors through blind matching and smart-contract escrow." />
+    <style>
+      #particle-canvas {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: -1;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="particle-canvas"></canvas>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+    <script>
+        // Particle system - 50x faster
+        const canvas = document.getElementById('particle-canvas');
+        const ctx = canvas.getContext('2d');
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        const mouse = { x: 0, y: 0 };
+        window.addEventListener('mousemove', e => {
+            mouse.x = e.clientX;
+            mouse.y = e.clientY;
+        });
+
+        const particles = [];
+        const particleCount = 120; // slightly more for denser effect
+
+        class Particle {
+            constructor() {
+                this.reset();
+            }
+            reset() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                // Initial drift speed increased
+                this.vx = (Math.random() - 0.5) * 1.0; // range -0.5 to 0.5
+                this.vy = (Math.random() - 0.5) * 1.0;
+                this.size = Math.random() * 2 + 1;
+                // Set color to white for dark theme
+                this.color = 'rgba(255, 255, 255, 0.8)';
+            }
+            update() {
+                // Stronger attraction to mouse - 50x force factor
+                const dx = mouse.x - this.x;
+                const dy = mouse.y - this.y;
+                const dist = Math.sqrt(dx*dx + dy*dy);
+                // Influence radius 150px
+                const force = Math.max(0, (150 - dist) / 150);
+                // 50x multiplier applied to force effect
+                const forceFactor = 0.12 * 50; // 6.0
+                this.vx += (dx / Math.max(dist, 1)) * force * forceFactor;
+                this.vy += (dy / Math.max(dist, 1)) * force * forceFactor;
+
+                // Apply velocity
+                this.x += this.vx;
+                this.y += this.vy;
+
+                // Light damping to keep motion lively but controlled
+                this.vx *= 0.992;
+                this.vy *= 0.992;
+
+                // Optional: cap maximum speed to prevent wild escapes
+                const speed = Math.sqrt(this.vx*this.vx + this.vy*this.vy);
+                const maxSpeed = 20;
+                if (speed > maxSpeed) {
+                    const ratio = maxSpeed / speed;
+                    this.vx *= ratio;
+                    this.vy *= ratio;
+                }
+
+                // Bounce off edges with energy retention
+                if (this.x < 0) { this.x = 0; this.vx *= -0.6; }
+                if (this.x > canvas.width) { this.x = canvas.width; this.vx *= -0.6; }
+                if (this.y < 0) { this.y = 0; this.vy *= -0.6; }
+                if (this.y > canvas.height) { this.y = canvas.height; this.vy *= -0.6; }
+
+                // Slow size pulse
+                this.size += (Math.random() - 0.5) * 0.05;
+                if (this.size < 0.5) this.size = 0.5;
+                if (this.size > 3) this.size = 3;
+            }
+            draw() {
+                ctx.fillStyle = this.color;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        // Initialize particles
+        for (let i = 0; i < particleCount; i++) {
+            particles.push(new Particle());
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+            requestAnimationFrame(animate);
+        }
+        animate();
+
+        // Particles are set to white color in reset() - no color changing effect
+    </script>
+  </body>
+</html>
